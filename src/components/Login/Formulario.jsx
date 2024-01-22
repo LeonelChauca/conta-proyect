@@ -1,8 +1,7 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBell,faLock,faUser} from '@fortawesome/free-solid-svg-icons'
+import {faLock,faUser} from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2';
-import { GoogleOAuthProvider,GoogleLogin,useGoogleOneTapLogin  } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import { Formik } from 'formik';
 import BotonGoogle from './BotonGoogle';
