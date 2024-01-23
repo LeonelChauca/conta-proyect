@@ -67,7 +67,7 @@ const Formulario = () => {
             </div>
 
             <div className='w-11/12 m-auto mt-24 pb-5'>
-                <button className='w-full h-10 bg-botonNotOk rounded-lg text-white font-candal'>Olvido su contraseña</button>
+                <button type='submit' className='w-full h-10 bg-botonNotOk rounded-lg text-white font-candal'>Olvido su contraseña</button>
             </div>
             </form>
         )}
