@@ -6,3 +6,6 @@ input[type="date"]::-webkit-clear-button {
     -webkit-appearance: none;
     margin: 0;
 }
+body{
+    background-color: #172454;
+}

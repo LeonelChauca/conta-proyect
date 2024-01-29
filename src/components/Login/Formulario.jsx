@@ -5,20 +5,23 @@ import Swal from 'sweetalert2';
 import { jwtDecode } from "jwt-decode";
 import { Formik } from 'formik';
 import BotonGoogle from './BotonGoogle';
+import { Link } from "react-router-dom";
+import axios from 'axios';
 const Formulario = () => {
 
-    const alertOk=(usuario,contrasenia)=>{
+    const alertOk=(correo,contrasenia)=>{
         Swal.fire({
             title: "Inicio de Sesion Correcta!",
-            text: `Usuario : ${usuario}, contrasenia ${contrasenia}`,
+            text: `Usuario : ${correo}, contrasenia ${contrasenia}`,
             icon: "success"
         })
     }
   return (
 
+    
     <Formik action="" 
         initialValues={{
-            usuario:"",
+            correo:"",
             contrasenia:"",
         }}
         validate={(values)=>{
@@ -26,7 +29,16 @@ const Formulario = () => {
         }}
         onSubmit={(values)=>{
             console.log(values)
-            alertOk(values.usuario,values.contrasenia)
+            axios.post('https://backend-2-gcwv.onrender.com/api/auth/login',values)
+            .then(res=>{
+                console.log(res)
+                if(res.status===200){
+                    alertOk(values.correo,values.contrasenia)
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         }}>
         
         {({values,errors,handleSubmit,handleChange,handleBlur})=>(
@@ -36,9 +48,9 @@ const Formulario = () => {
                 <input 
                     type="text" 
                     className=" bg-boton  w-full pl-10 pr-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:border-blue-500 font-candal placeholder-gray-500" 
-                    placeholder='Usuario'
-                    name='usuario'
-                    value={values.usuario}
+                    placeholder='correo'
+                    name='correo'
+                    value={values.correo}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     />
@@ -59,11 +71,13 @@ const Formulario = () => {
                 <button className='w-full h-10 bg-botonOk rounded-lg text-white font-candal' type='submit'>Ingresar</button>
             </div>
             <div className='w-11/12 m-auto my-6'>
-                <button className='w-full h-10 bg-botonAccept rounded-lg text-white font-candal'>Registrar</button>
+                <Link to="/Registro">
+                    <button className='w-full h-10 bg-botonAccept rounded-lg text-white font-candal'  >Registrar</button>
+                </Link>
+                
             </div>
 
             <div className='w-11/12 flex justify-center m-auto'>
-                <BotonGoogle/>
             </div>
 
             <div className='w-11/12 m-auto mt-24 pb-5'>

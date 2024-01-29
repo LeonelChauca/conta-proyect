@@ -1,5 +1,6 @@
 import React from 'react'
 import Formulario from './Formulario'
+import imagenLogin from '/src/assets/imagen_Login.jpg';
 const Login = () => {
   return (
     <div className=' w-full h-screen  bg-main3 flex items-center'>
@@ -9,7 +10,7 @@ const Login = () => {
               <Formulario />
         </div>
         <div className=' lg:w-1/2 max-lg:hidden '>
-          <img src="../src/assets/imagen_Login.jpg" alt="" className=' w-full h-full'/>
+          <img src={imagenLogin} alt="" className=' w-full h-full'/>
         </div>
       </div>
       
