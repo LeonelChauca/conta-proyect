@@ -8,32 +8,10 @@ import { Formik } from 'formik';
 import axios from 'axios'
 import { validacionRegistro } from './validacionRegistro';
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import { alertOk,alertError } from './funcionesSwalRegistro';
 
 export const FormularioRegistro = () => {
     let navigate=useNavigate();
-    const alertOk=()=>{
-        Swal.fire({
-            title: "Usuario Creado!",
-            text: `Bienvenido !`,
-            icon: "success",
-            confirmButtonText: "Iniciar Sesion",
-        }
-        ).then((result)=>{
-            if(result.isConfirmed){
-                navigate('/')
-            }
-        }
-        
-        )
-    }
-    const alertError=()=>{
-        Swal.fire({
-            title: "Error al crear Usuario!",
-            text: `El correo ya esta registrado`,
-            icon: "error"
-        })
-    }
     const alertConfirm= async(correo,action)=>{
         let firma=false;
         try{
@@ -59,7 +37,6 @@ export const FormularioRegistro = () => {
                             .finally(()=>{
                                 if(firma){
                                     alertOk();
-                                    
                                 }
                             })
                     })
@@ -68,13 +45,11 @@ export const FormularioRegistro = () => {
                 if(result.isDismissed){
                     action.setSubmitting(false)
                 }
-            } )
+            })
         }
         catch (error) {
-            
         }
     }
-
   return (
     <Formik
         initialValues={{
